@@ -10,7 +10,7 @@ int oWins;
 char letter = 'x';
 bool tie  = false;
 
-void drawingBoard(){
+void drawingBoard(){//drawing the board
 
   cout<<"    a    b    c \n";
   cout<<"a";
@@ -25,16 +25,16 @@ void drawingBoard(){
 void gamePlay(){
   int num;
 
-  if(letter == 'x'){
+  if(letter == 'x'){//if it's x's turn then ask them to enter a number to place the x on the board.
     cout<<"Please enter a number: ";
     cin>>num;
   }
 
-  if(letter == 'o'){
+  if(letter == 'o'){//if it's o's turn then ask them to enter a number to place the o on the board.
     cout<<"Please enter a number: ";
     cin>>num;
   }
-
+  //correlating the number value with a row and column.
   if(num == 1){
     row = 0;
     column = 0;
@@ -80,7 +80,7 @@ void gamePlay(){
     gamePlay();
   }
 
-  //replacement
+  //replacing the numbers on the board with the appropriate letter  
 if(letter == 'x' && board[row][column] != 'x' && board[row][column] != 'o')
     {
       board[row][column] = 'x';
@@ -99,12 +99,12 @@ if(letter == 'x' && board[row][column] != 'x' && board[row][column] != 'o')
 
 bool winStatment(){
   for(int i=0; i<3; i++)
-    {
+    {//checking the columns and rows for win.
       if(board[i][0]==board[i][1] && board[i][0] == board[i][2] || board[0][i] == board[1][i] &&
          board[0][i] == board[2][i]){
          return true;
       }
-    }
+    }//checking diagonals
 if(board[0][0] == board[1][1] && board[1][1]==board[2][2] || board[0][2] == board[1][1] &&
      board[1][1] == board[2][0]){
      return true;
@@ -114,7 +114,7 @@ if(board[0][0] == board[1][1] && board[1][1]==board[2][2] || board[0][2] == boar
     {
 
       for(int j=0;j<3;j++)
-        {
+        {//keep playing if the board is not completly filled.
           if(board[i][j] != 'x' && board[i][j] != 'o')
             {
 
@@ -126,7 +126,7 @@ if(board[0][0] == board[1][1] && board[1][1]==board[2][2] || board[0][2] == boar
   return false;
 }
 
-void resetBoard(){
+void resetBoard(){//goes through the board and sets the board back to normal.
   letter= 'x';
 
   if(board[0][0] == 'x' || board[0][0] == 'o'){
@@ -159,7 +159,7 @@ if(board[0][2] == 'x' || board[0][2] == 'o'){
 }
 int main(){
   int rematch;
-
+  //runs the three functions till someone has won.
   while(!winStatment()){
     drawingBoard();
     gamePlay();
@@ -167,7 +167,7 @@ int main(){
   }
   drawingBoard();
   if(letter== 'x' && tie == false)
-    {
+    {//what to do when o wins
       cout<<"O Wins!"<<endl;
       oWins++;
       cout<<"X total wins: "<<xWins<<endl;
@@ -184,7 +184,7 @@ int main(){
       }
     }
 else if(letter== 'o' && tie == false)
-    {
+    {//what to do when X wins the game
       cout<<"X Wins!"<<endl;
       xWins++;
       cout<<"X total wins: "<<xWins<<endl;
@@ -201,11 +201,12 @@ else if(letter== 'o' && tie == false)
       }
     }
   else
-    {
+    { //if neither x or o won and the board is filled then it's a draw.
       cout<<"It's a draw!"<<endl;
       cout<<"X total wins: "<<xWins<<endl;
       cout<<"O total wins: "<<oWins<<endl;
       cout<<endl;
+      //asking if the user wants to play if call resetboard which resets the board and calls the main function to start the game over.
       cout<<"Do you want to play again?(Type 1 for Yes or 2 for No)"<<endl;
       cin>>rematch;
       if(rematch == 1){

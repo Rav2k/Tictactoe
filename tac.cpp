@@ -1,3 +1,9 @@
+/*
+Author: Ayowade Owojori
+date: 9/27/22
+Purpose: Game of tictactoe.
+*/
+
 #include <iostream>
 
 using namespace std;
